@@ -24,7 +24,7 @@ async fn main() -> Fallible<()> {
             Topic::TradeBin1m,
             Topic::Trade(None),
             Topic::Settlement,
-            Topic::OrderBook10,
+            Topic::OrderBook10(Some("XBTUSD".to_string())),
             Topic::Announcement,
         ]))
         .await?;

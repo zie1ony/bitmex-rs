@@ -12,7 +12,7 @@ pub enum Topic {
     Liquidation,
     OrderBookL2_25(Option<String>), // Optional filter
     OrderBookL2(Option<String>),    // Optional filter
-    OrderBook10,
+    OrderBook10(Option<String>),
     PublicNotifications,
     Quote,
     QuoteBin1m,
@@ -52,7 +52,8 @@ impl Serialize for Topic {
             OrderBookL2_25(None) => "orderBookL2_25".to_string(),
             OrderBookL2(Some(filter)) => format!("orderBookL2:{}", filter),
             OrderBookL2(None) => "orderBookL2".to_string(),
-            OrderBook10 => "announcement".to_string(),
+            OrderBook10(Some(filter)) => format!("orderBook10:{}", filter),
+            OrderBook10(None) => "orderBook10".to_string(),
             PublicNotifications => "publicNotifications".to_string(),
             Quote => "quote".to_string(),
             QuoteBin1m => "quoteBin1m".to_string(),
@@ -103,7 +104,8 @@ impl<'de> Deserialize<'de> for Topic {
             ["orderBookL2_25", filter] => OrderBookL2_25(Some((*filter).to_string())),
             ["orderBookL2"] => OrderBookL2(None),
             ["orderBookL2", filter] => OrderBookL2(Some((*filter).to_string())),
-            ["orderBook10"] => OrderBook10,
+            ["orderBook10"] => OrderBook10(None),
+            ["orderBook10", filter] => OrderBook10(Some((*filter).to_string())),
             ["publicNotifications"] => PublicNotifications,
             ["quote"] => Quote,
             ["quoteBin1m"] => QuoteBin1m,
