@@ -250,7 +250,7 @@ pub struct GetOrderRequest {
     #[serde(rename = "endTime")]
     pub end_time: Option<DateTime<Utc>>
 }
-#[derive(Clone, Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize, Default)]
 /// Create a new order.
 pub struct PostOrderRequest {
     /// Instrument symbol. e.g. 'XBTUSD'.
